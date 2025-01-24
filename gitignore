@@ -1,0 +1,16 @@
+# Ignorar node_modules
+
+node_modules/
+
+# Ignorar archivos de entorno
+
+.env
+
+# Ignorar archivos de configuración de IDEs
+
+.vscode/
+.idea/
+
+# Ignorar el archivo de configuración de Firebase
+
+juegosapp-e571e-firebase-adminsdk-fbsvc-bc8789e1dc.json
