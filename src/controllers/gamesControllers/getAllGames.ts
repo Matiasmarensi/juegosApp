@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import dotenv from "dotenv";
 import { gamesApi } from "../../services/gameServices/gamesApi";
+
 dotenv.config();
 const API_KEY = process.env.API_KEY || "";
 const URL = "https://api.rawg.io/api/";

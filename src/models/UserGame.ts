@@ -30,6 +30,14 @@ UserGame.init(
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    favorite: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    gameDetails: {
+      type: DataTypes.JSONB,
+      allowNull: true,
+    },
   },
   {
     sequelize,
