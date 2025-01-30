@@ -3,7 +3,7 @@ import sequelize from "../database";
 import UserGame from "./UserGame"; // Importamos UserGame para definir la relación
 
 class User extends Model {
-  public id!: number;
+  public id!: string;
   public name!: string;
   public email!: string;
 }
@@ -11,8 +11,8 @@ class User extends Model {
 User.init(
   {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.STRING,
+
       primaryKey: true,
     },
     name: {

@@ -9,7 +9,7 @@ const URL = "https://api.rawg.io/api/";
 
 export const addFavoriteGame = async (req: Request, res: Response) => {
   const { userId, gameId, favoriteRating, completed, favorite } = req.body;
-
+  console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXX", userId);
   try {
     // Llamar a getGameById para obtener los detalles del juego
     const gameDetails = await getGameById(URL, API_KEY, `games/${gameId}`);

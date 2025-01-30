@@ -4,7 +4,7 @@ import User from "./User"; // Importamos User para la relación
 import Game from "./Game"; // Importamos Game para la relación
 
 class UserGame extends Model {
-  public userId!: number;
+  public userId!: string;
   public gameId!: number;
   public favoriteRating!: number;
   public completed!: boolean;
@@ -13,7 +13,7 @@ class UserGame extends Model {
 UserGame.init(
   {
     userId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
     },

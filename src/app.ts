@@ -2,10 +2,13 @@ import express from "express";
 
 import authRoutes from "./routes/auth";
 import gameRoutes from "./routes/games";
+import cors from "cors";
 
 // Inicializar Firebase Admin con el archivo de credenciales
+//add cors
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/games", gameRoutes);

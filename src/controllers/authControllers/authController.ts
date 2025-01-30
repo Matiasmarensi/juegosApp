@@ -11,21 +11,24 @@ firebaseAdmin.initializeApp({
 });
 
 const googleAuth = async (req: Request, res: Response) => {
-  const { token }: GoogleAuthDTO = req.body;
+  const { token, email }: GoogleAuthDTO = req.body; // Ahora recibimos el email también
+  console.log("Token:");
+  console.log("Email:", email);
 
   try {
     // Verificar el token con Firebase
+
     const decodedToken = await firebaseAdmin.auth().verifyIdToken(token);
 
     // Obtener la información del usuario desde Firebase
-    const { uid, email, name } = decodedToken;
+    const { user_id, email, name } = decodedToken;
 
     // Verificar si el usuario ya existe en la base de datos
     if (!email) {
       res.status(400).json({ message: "El email no está presente en el token" });
       return;
     }
-    let user = await findUser(email);
+    let user = await findUser(email, user_id, name);
 
     // Enviar la información del usuario al frontend
     res.json({ user, message: "Usuario autenticado con éxito" });
