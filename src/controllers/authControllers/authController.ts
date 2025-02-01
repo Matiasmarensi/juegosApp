@@ -12,8 +12,6 @@ firebaseAdmin.initializeApp({
 
 const googleAuth = async (req: Request, res: Response) => {
   const { token, email }: GoogleAuthDTO = req.body; // Ahora recibimos el email también
-  console.log("Token:");
-  console.log("Email:", email);
 
   try {
     // Verificar el token con Firebase

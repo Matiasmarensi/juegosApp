@@ -4,6 +4,7 @@ import "./models/Game";
 import "./models/User";
 import "./models/UserGame";
 import dotenv from "dotenv";
+
 dotenv.config();
 
 const PORT = process.env.PORT as string;

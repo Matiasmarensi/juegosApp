@@ -4,6 +4,9 @@ import User from "./User"; // Importamos User para la relación
 import Game from "./Game"; // Importamos Game para la relación
 
 class UserGame extends Model {
+  static find(arg0: { userId: any }) {
+    throw new Error("Method not implemented.");
+  }
   public userId!: string;
   public gameId!: number;
   public favoriteRating!: number;
