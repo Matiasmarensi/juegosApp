@@ -8,8 +8,10 @@ export const getGameById = async (baseUrl: string, apiKey: string, endpoint: str
     }
 
     const data = await response.json();
+
     return data;
   } catch (error) {
+    console.log("Error al obtener el juego por ID:", error);
     console.error("Error al obtener el juego por ID:", error);
     throw error; // Relanza el error para manejarlo en otro nivel
   }

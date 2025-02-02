@@ -1,5 +1,6 @@
 import UserGame from "../../models/UserGame";
 import Game from "../../models/Game"; // Importamos el modelo de Game
+import { platform } from "os";
 
 export const addFavorite = async (
   userId: number,
@@ -23,7 +24,7 @@ export const addFavorite = async (
         rating: gameDetails.rating,
       });
     }
-
+    console.log("GAME DETAILS", gameDetails);
     // Luego, creamos el registro en UserGame
     const userGame = await UserGame.create({
       userId,
@@ -31,10 +32,18 @@ export const addFavorite = async (
       favoriteRating,
       completed,
       favorite,
-      gameDetails,
+      gameDetails: {
+        name: gameDetails.name,
+        slug: gameDetails.slug,
+        released: gameDetails.released,
+        rating: gameDetails.rating,
+        platforms: gameDetails.platformsString,
+        genres: gameDetails.genresString,
+        backgroundImage: gameDetails.background_image,
+      },
     });
 
-    console.log("Juego añadido a favoritos:", userGame.userId, userGame.gameId, userGame.favoriteRating, gameDetails);
+    console.log("Juego añadido a favoritos:", userGame);
     return userGame;
   } catch (error) {
     console.error("Error al agregar el juego a favoritos:", error);

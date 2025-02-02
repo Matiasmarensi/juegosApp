@@ -1,18 +1,30 @@
-export const gamesApi = async (URL: string, API_KEY: string, lowerCaseQuery: string) => {
-  const response = await fetch(`${URL}games?key=${API_KEY}&search=${lowerCaseQuery}&page_size=${10}`);
+import dotenv from "dotenv";
 
-  const data = await response.json();
+dotenv.config();
+const API_KEY = process.env.API_KEY || "";
+const URL = "https://api.rawg.io/api/";
 
-  const games = data.results.map((game: any) => {
-    return {
-      tags: game.tags,
-      id: game.id,
-      name: game.name,
-      background_image: game.background_image,
-      rating: game.rating,
-      released: game.released,
-    };
-  });
+export const gamesApi = async (lowerCaseQuery: string) => {
+  try {
+    const response = await fetch(`${URL}games?key=${API_KEY}&search=${lowerCaseQuery}&page_size=${10}`);
 
-  return games;
+    console.log("data:", response);
+    const data = await response.json();
+
+    const games = data.results.map((game: any) => {
+      return {
+        tags: game.tags,
+        id: game.id,
+        name: game.name,
+        background_image: game.background_image,
+        rating: game.rating,
+        released: game.released,
+      };
+    });
+
+    return games;
+  } catch (error) {
+    console.error("Error al procesar la respuesta:", error);
+    throw new Error("No se pudo procesar la respuesta de la API.");
+  }
 };

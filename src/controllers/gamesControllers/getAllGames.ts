@@ -8,11 +8,15 @@ const URL = "https://api.rawg.io/api/";
 
 export const getAllGames = async (req: Request, res: Response) => {
   const { name } = req.query;
-  const lowerCaseQuery = name?.toString().toLowerCase() || "";
-  try {
-    const response = await gamesApi(URL, API_KEY, lowerCaseQuery);
+  console.log(req.query);
 
-    res.json(response);
+  const lowerCaseQuery = name?.toString().toLowerCase() || "";
+  console.log("lowerCaseQuery:", lowerCaseQuery);
+  try {
+    const response = await gamesApi(lowerCaseQuery);
+
+    res.send(response);
+    return;
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error al obtener los juegos", error });

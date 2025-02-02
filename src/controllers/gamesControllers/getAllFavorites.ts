@@ -26,7 +26,7 @@ export const getFavoriteGames = async (req: AuthenticatedRequest, res: Response)
 
   try {
     const uid = req.user?.uid; // `uid` del usuario autenticado
-    console.log("User ID:", uid);
+
     // Buscar los juegos favoritos del usuario en la base de datos
     const favoriteGames = await UserGame.findAll({
       where: { userId: uid, favorite: true }, // Asegúrate de filtrar solo los favoritos
@@ -37,7 +37,7 @@ export const getFavoriteGames = async (req: AuthenticatedRequest, res: Response)
         },
       ],
     });
-    console.log("Favorite games:", favoriteGames.length);
+
     res.json(favoriteGames);
   } catch (error) {
     console.error("Error fetching favorite games:", error);
