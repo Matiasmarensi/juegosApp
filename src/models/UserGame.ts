@@ -11,19 +11,25 @@ class UserGame extends Model {
   public gameId!: number;
   public favoriteRating!: number;
   public completed!: boolean;
+  public favorite!: boolean;
+  public gameDetails!: any;
 }
 
 UserGame.init(
   {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     userId: {
       type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true,
     },
     gameId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true,
+      unique: true,
     },
     favoriteRating: {
       type: DataTypes.INTEGER,

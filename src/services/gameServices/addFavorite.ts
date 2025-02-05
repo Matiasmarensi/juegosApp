@@ -12,38 +12,56 @@ export const addFavorite = async (
 ) => {
   try {
     // Primero, verificamos si el juego ya existe en la base de datos
-    let game = await Game.findByPk(gameId);
-
-    // Si no existe, lo creamos
-    if (!game) {
-      game = await Game.create({
-        id: gameId,
-        name: gameDetails.name,
-        slug: gameDetails.slug,
-        released: gameDetails.released,
-        rating: gameDetails.rating,
-      });
-    }
-    console.log("GAME DETAILS", gameDetails);
-    // Luego, creamos el registro en UserGame
-    const userGame = await UserGame.create({
-      userId,
-      gameId,
-      favoriteRating,
-      completed,
-      favorite,
-      gameDetails: {
-        name: gameDetails.name,
-        slug: gameDetails.slug,
-        released: gameDetails.released,
-        rating: gameDetails.rating,
-        platforms: gameDetails.platformsString,
-        genres: gameDetails.genresString,
-        backgroundImage: gameDetails.background_image,
+    let userGame = await UserGame.findOne({
+      where: {
+        userId,
+        gameId,
       },
     });
 
-    console.log("Juego añadido a favoritos:", userGame);
+    if (userGame) {
+      // Si el registro ya existe, actualizamos los valores en lugar de crear uno nuevo
+      userGame.favorite = favorite;
+      userGame.favoriteRating = favoriteRating;
+      userGame.completed = completed;
+      userGame.gameDetails = gameDetails;
+
+      // Guardamos los cambios
+      await userGame.save();
+      console.log("Juego actualizado en favoritos");
+    } else {
+      // Si no existe, buscamos el juego en la tabla Game
+      let game = await Game.findByPk(gameId);
+
+      // Si no existe, lo creamos
+      if (!game) {
+        game = await Game.create({
+          id: gameId,
+          name: gameDetails.name,
+          slug: gameDetails.slug,
+          released: gameDetails.released,
+          rating: gameDetails.rating,
+        });
+      }
+
+      // Luego, creamos el registro en UserGame
+      const userGame = await UserGame.create({
+        userId,
+        gameId,
+        favoriteRating,
+        completed,
+        favorite,
+        gameDetails: {
+          name: gameDetails.name,
+          slug: gameDetails.slug,
+          released: gameDetails.released,
+          rating: gameDetails.rating,
+          platforms: gameDetails.platformsString,
+          genres: gameDetails.genresString,
+          backgroundImage: gameDetails.background_image,
+        },
+      });
+    }
     return userGame;
   } catch (error) {
     console.error("Error al agregar el juego a favoritos:", error);

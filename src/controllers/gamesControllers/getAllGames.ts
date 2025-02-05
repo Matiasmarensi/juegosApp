@@ -8,10 +8,9 @@ const URL = "https://api.rawg.io/api/";
 
 export const getAllGames = async (req: Request, res: Response) => {
   const { name } = req.query;
-  console.log(req.query);
 
   const lowerCaseQuery = name?.toString().toLowerCase() || "";
-  console.log("lowerCaseQuery:", lowerCaseQuery);
+
   try {
     const response = await gamesApi(lowerCaseQuery);
 

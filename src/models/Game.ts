@@ -23,11 +23,11 @@ Game.init(
     },
     slug: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     released: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
     rating: {
       type: DataTypes.FLOAT,

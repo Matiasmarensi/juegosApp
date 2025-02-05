@@ -8,7 +8,6 @@ export const gamesApi = async (lowerCaseQuery: string) => {
   try {
     const response = await fetch(`${URL}games?key=${API_KEY}&search=${lowerCaseQuery}&page_size=${10}`);
 
-    console.log("data:", response);
     const data = await response.json();
 
     const games = data.results.map((game: any) => {
