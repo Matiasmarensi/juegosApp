@@ -28,7 +28,6 @@ export const addFavorite = async (
 
       // Guardamos los cambios
       await userGame.save();
-      console.log("Juego actualizado en favoritos");
     } else {
       // Si no existe, buscamos el juego en la tabla Game
       let game = await Game.findByPk(gameId);
@@ -61,8 +60,9 @@ export const addFavorite = async (
           backgroundImage: gameDetails.background_image,
         },
       });
+      console.log("Juego agregado a favoritos:", userGame);
+      return userGame;
     }
-    return userGame;
   } catch (error) {
     console.error("Error al agregar el juego a favoritos:", error);
     throw error;

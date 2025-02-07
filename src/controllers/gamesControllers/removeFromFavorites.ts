@@ -6,9 +6,6 @@ interface AuthenticatedRequest extends Request {
 }
 
 export const removeFromFavorites = async (req: AuthenticatedRequest, res: Response): Promise<void> => {
-  console.log("hola");
-  console.log("hola");
-  console.log(req.params); // Asegúrate de que el gameId esté llegando correctamente en los params
   const { id } = req.params;
 
   if (!req.user || !req.user.uid) {

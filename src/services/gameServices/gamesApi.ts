@@ -7,6 +7,7 @@ const URL = "https://api.rawg.io/api/";
 export const gamesApi = async (lowerCaseQuery: string) => {
   try {
     const response = await fetch(`${URL}games?key=${API_KEY}&search=${lowerCaseQuery}&page_size=${10}`);
+    console.log("url", `${URL}games?key=${API_KEY}&search=${lowerCaseQuery}&page_size=${10}`);
 
     const data = await response.json();
 

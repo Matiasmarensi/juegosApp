@@ -3,8 +3,6 @@ import { where } from "sequelize";
 import UserGame from "../../models/UserGame";
 
 export const removeFav = async (id: string, uid: string) => {
-  console.log("id", id);
-  console.log("uid", uid);
   try {
     //buscar el juego y cambiar la propiedad favorite a false
     const [updatedRows] = await UserGame.update({ favorite: false }, { where: { id: id, userId: uid } });
