@@ -30,6 +30,7 @@ export const getFavoriteGames = async (req: AuthenticatedRequest, res: Response)
     // Buscar los juegos favoritos del usuario en la base de datos
     const favoriteGames = await UserGame.findAll({
       where: { userId: uid, favorite: true }, // Asegúrate de filtrar solo los favoritos
+      attributes: ["id", "userId", "gameId", "favoriteRating", "completed", "favorite", "gameDetails"],
       include: [
         {
           model: Game, // Incluir el modelo 'Game'

@@ -15,6 +15,7 @@ export const getAllGames = async (req: Request, res: Response) => {
     const response = await gamesApi(lowerCaseQuery);
 
     res.send(response);
+
     return;
   } catch (error) {
     console.error(error);

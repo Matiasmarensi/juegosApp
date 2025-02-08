@@ -5,7 +5,6 @@ export const getGamebyId = async (id: string) => {
     const game = await UserGame.findByPk(id, {
       attributes: ["id", "userId", "gameId", "completed", "favorite", "gameDetails"],
     });
-    console.log(game);
   } catch (error) {
     console.log(error);
   }

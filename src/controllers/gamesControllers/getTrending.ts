@@ -29,6 +29,7 @@ export const getTrending = async (req: Request, res: Response) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
+    console.log("data", data);
 
     const games = data.results.map((game: any) => ({
       id: game.id,
@@ -36,6 +37,7 @@ export const getTrending = async (req: Request, res: Response) => {
       background_image: game.background_image,
       rating: game.rating,
       released: game.released,
+
       platforms: game.platforms?.map((platform: any) => platform?.platform?.name).join(", ") || "--",
       genres: game.genres.map((genre: any) => genre?.name).join(", ") || "--",
     }));

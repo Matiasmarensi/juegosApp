@@ -1,6 +1,8 @@
 export const getGameById = async (baseUrl: string, apiKey: string, endpoint: string) => {
+  console.log("URLGAMEID", baseUrl, apiKey, endpoint);
   try {
     const url = `${baseUrl}${endpoint}?key=${apiKey}`;
+    console.log(url);
     const response = await fetch(url);
 
     if (!response.ok) {
