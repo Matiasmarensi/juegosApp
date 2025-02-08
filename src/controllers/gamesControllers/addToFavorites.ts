@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import dotenv from "dotenv";
 import { addFavorite } from "../../services/gameServices/addFavorite";
-import { getGameById } from "./gameById";
+import { gameById } from "./gameById";
 
 dotenv.config();
 const API_KEY = process.env.API_KEY || "";
@@ -13,7 +13,7 @@ export const addFavoriteGame = async (req: Request, res: Response) => {
   const userId = req.user?.uid;
 
   try {
-    const gameDetails = await getGameById(URL, API_KEY, `games/${gameId}`);
+    const gameDetails = await gameById(URL, API_KEY, `games/${gameId}`);
 
     const { name, released, rating, slug, description, platforms, genres, background_image } = gameDetails;
 

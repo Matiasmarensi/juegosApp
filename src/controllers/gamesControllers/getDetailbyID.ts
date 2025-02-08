@@ -1,9 +1,10 @@
-export const gameById = async (baseUrl: string, apiKey: string, endpoint: string) => {
+export const getGameById = async (id: string) => {
+  const API_KEY = process.env.API_KEY || "";
+  const URL = "https://api.rawg.io/api/";
   try {
-    const url = `${baseUrl}${endpoint}?key=${apiKey}`;
+    const url = `${URL}games/${id}?key=${API_KEY}`;
 
     const response = await fetch(url);
-    console.log("RESPONSE DETAIL", response);
 
     if (!response.ok) {
       throw new Error(`Error en la solicitud: ${response.status} - ${response.statusText}`);

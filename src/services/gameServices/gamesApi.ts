@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import { gameById } from "../../controllers/gamesControllers/gameById";
 
 dotenv.config();
 
